@@ -8,16 +8,17 @@ as a natural language date (e.g. January 10, 2010) or a Unix timestamp
 (e.g. 1263081600000).
 
 The API format is
-```
-  https://timestamp-jm.herukoapp.com/api/date?date='...'
-```
 
-where the ... is replaced with the input date or timestamp.
+    https://[hostname]/api/date?date=[date]
+
+where [hostname] is the host name of the server hosting the service and
+[date] is the input date or Unix timestamp.
+
+An instance of the service is available at https://timestamp-jm.herukoapp.com
 
 The result is a JSON message with the format
-```
-  { "natural":"January 10, 2010", "unix": 1263081600000 }
-```
+
+    { "natural":"January 10, 2010", "unix": 1263081600000 }
 
 If an invalid input is provided, null will be returned for both values.
 
