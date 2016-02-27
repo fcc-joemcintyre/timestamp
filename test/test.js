@@ -47,7 +47,7 @@ describe ("test server", function () {
         if (err) { return done (err); }
         if (res.statusCode === 200) {
           body = JSON.parse (body);
-          if ((body.natural === "January 10, 2010") && (body.unix === 1263103200000)) {
+          if ((body.natural === "January 10, 2010") && (body.unix === 1263081600000)) {
             return done ();
           } else {
             return done (new Error (`Invalid response values ${body.natural}, ${body.unix}`));
@@ -64,7 +64,7 @@ describe ("test server", function () {
         if (err) { return done (err); }
         if (res.statusCode === 200) {
           body = JSON.parse (body);
-          if ((body.natural === "January 10, 2010") && (body.unix === 1263103200000)) {
+          if ((body.natural === "January 10, 2010") && (body.unix === 1263081600000)) {
             return done ();
           } else {
             return done (new Error (`Invalid response values ${body.natural}, ${body.unix}`));
