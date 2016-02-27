@@ -9,7 +9,7 @@ as a natural language date (e.g. January 10, 2010) or a Unix timestamp
 
 The API format is
 ```
-  https://timestamp-jhm.herukoapp.com/api/date?date='...'
+  https://timestamp-jm.herukoapp.com/api/date?date='...'
 ```
 
 where the ... is replaced with the input date or timestamp.
