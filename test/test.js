@@ -43,14 +43,14 @@ describe ("test server", function () {
 
   describe ("valid date (natural)", function () {
     it ("should return JSON object with natural, unix formats", function (done) {
-      request.get ("http://localhost:3000/api/date?date=January 10,2010", function (err, res, body) {
+      request.get ("http://localhost:3000/api/date?date=January 10, 2010", function (err, res, body) {
         if (err) { return done (err); }
         if (res.statusCode === 200) {
           body = JSON.parse (body);
           if ((body.natural === "January 10, 2010") && (body.unix === 1263103200000)) {
             return done ();
           } else {
-            return done (new Error ("Invalid response values"));
+            return done (new Error (`Invalid response values ${body.natural}, ${body.unix}`));
           }
         }
         return done (new Error (`Invalid status code ${res.statusCode}`));
@@ -67,7 +67,7 @@ describe ("test server", function () {
           if ((body.natural === "January 10, 2010") && (body.unix === 1263103200000)) {
             return done ();
           } else {
-            return done (new Error ("Invalid response values"));
+            return done (new Error (`Invalid response values ${body.natural}, ${body.unix}`));
           }
         }
         return done (new Error (`Invalid status code ${res.statusCode}`));
