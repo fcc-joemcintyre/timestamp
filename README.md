@@ -1,5 +1,7 @@
 # Timestamp Service
 
+[![Build Status](https://travis-ci.org/fcc-joemcintyre/timestamp.svg?branch=master)](https://travis-ci.org/fcc-joemcintyre/timestamp)
+
 This service returns a JSON object containing the natural language
 and Unix timestamp form for a passed date. The date can be provided
 as a natural language date (e.g. January 10, 2010) or a Unix timestamp
