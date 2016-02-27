@@ -1,0 +1,23 @@
+{
+  "name": "timestamp",
+  "author": "Joe McIntyre (j_h_mcintyre@yahoo.com)",
+  "description": "Timestamp service",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fcc-joemcintyre/timestamp"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.13.4"
+  },
+  "scripts": {
+    "test": "mocha ./test/test.js"
+  },
+  "devDependencies": {
+    "mocha": "2.4.5"
+  },
+  "engines": {
+    "node": "4.3.1"
+  }
+}
