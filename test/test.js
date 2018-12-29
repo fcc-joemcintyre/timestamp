@@ -1,4 +1,5 @@
-const assert = require ('assert');
+/* eslint-disable no-unused-expressions */
+const { expect } = require ('chai');
 const fetch = require ('node-fetch');
 const processCommand = require ('../lib/cmd').processCommand;
 const server = require ('../lib/server');
@@ -15,18 +16,18 @@ describe ('test server', function () {
   describe ('/', function () {
     it ('should return 200 with home page', async function () {
       const res = await fetch ('http://localhost:3000/');
-      assert (res.status === 200);
+      expect (res.status).to.equal (200);
       const body = await res.text ();
-      assert (body.startsWith ('<h1>Timestamp Service</h1>'));
+      expect (body.startsWith ('<h1>Timestamp Service</h1>')).to.be.true;
     });
   });
 
   describe ('invalid URL content', function () {
     it ('should return 200 with home page', async function () {
       const res = await fetch ('http://localhost:3000/dummy');
-      assert (res.status === 200);
+      expect (res.status).to.equal (200);
       const body = await res.text ();
-      assert (body.startsWith ('<h1>Timestamp Service</h1>'));
+      expect (body.startsWith ('<h1>Timestamp Service</h1>')).to.be.true;
     });
   });
 
@@ -39,10 +40,10 @@ describe ('test server', function () {
       };
 
       const res = await fetch ('http://localhost:3000/api/date?date=January 10, 2010');
-      assert (res.status === 200);
+      expect (res.status).to.equal (200);
       const body = await res.json ();
-      assert (body.natural === 'January 10, 2010');
-      assert (body.unix === 1263103200000);
+      expect (body.natural).to.equal ('January 10, 2010');
+      expect (body.unix).to.equal (1263081600000);
 
       // restore timezone offset
       Date.prototype.getTimezoneOffset = store; // eslint-disable-line
@@ -58,10 +59,10 @@ describe ('test server', function () {
       };
 
       const res = await fetch ('http://localhost:3000/api/date?date=January 10, 2010');
-      assert (res.status === 200);
+      expect (res.status).to.equal (200);
       const body = await res.json ();
-      assert (body.natural === 'January 10, 2010');
-      assert (body.unix === 1263103200000);
+      expect (body.natural).to.equal ('January 10, 2010');
+      expect (body.unix).to.equal (1263081600000);
 
       // restore timezone offset
       Date.prototype.getTimezoneOffset = store; // eslint-disable-line
@@ -76,10 +77,10 @@ describe ('test server', function () {
         return 360;
       };
       const res = await fetch ('http://localhost:3000/api/date?date=1263103200000');
-      assert (res.status === 200);
+      expect (res.status).to.equal (200);
       const body = await res.json ();
-      assert (body.natural === 'January 10, 2010');
-      assert (body.unix === 1263103200000);
+      expect (body.natural).to.equal ('January 10, 2010');
+      expect (body.unix).to.equal (1263103200000);
 
       // restore timezone offset
       Date.prototype.getTimezoneOffset = store; // eslint-disable-line
@@ -94,10 +95,10 @@ describe ('test server', function () {
         return -60;
       };
       const res = await fetch ('http://localhost:3000/api/date?date=1263081600000');
-      assert (res.status === 200);
+      expect (res.status).to.equal (200);
       const body = await res.json ();
-      assert (body.natural === 'January 10, 2010');
-      assert (body.unix === 1263081600000);
+      expect (body.natural).to.equal ('January 10, 2010');
+      expect (body.unix).to.equal (1263081600000);
 
       // restore timezone offset
       Date.prototype.getTimezoneOffset = store; // eslint-disable-line
@@ -109,76 +110,76 @@ describe ('cmd', function () {
   describe ('empty command', function () {
     it ('should not fail', function () {
       const cmd = processCommand ([]);
-      assert.deepStrictEqual (cmd, { code: 0, exit: false, port: 0 });
+      expect (cmd).to.deep.equal ({ code: 0, exit: false, port: 0 });
     });
   });
 
   describe ('invalid standalone option', function () {
     it ('should fail with code 1', function () {
       const cmd = processCommand (['-j']);
-      assert.deepStrictEqual (cmd, { code: 1, exit: true, port: 0 });
+      expect (cmd).to.deep.equal ({ code: 1, exit: true, port: 0 });
     });
   });
 
   describe ('invalid settings option', function () {
     it ('should fail with code 1', function () {
       const cmd = processCommand (['-j=foo.js']);
-      assert.deepStrictEqual (cmd, { code: 1, exit: true, port: 0 });
+      expect (cmd).to.deep.equal ({ code: 1, exit: true, port: 0 });
     });
   });
 
   describe ('proper port command', function () {
     it ('should succeed', function () {
       const cmd = processCommand (['-p=2000']);
-      assert.deepStrictEqual (cmd, { code: 0, exit: false, port: 2000 });
+      expect (cmd).to.deep.equal ({ code: 0, exit: false, port: 2000 });
     });
   });
 
   describe ('port out of range (negative)', function () {
     it ('should fail', function () {
       const cmd = processCommand (['-p=-1']);
-      assert.deepStrictEqual (cmd, { code: 1, exit: true, port: -1 });
+      expect (cmd).to.deep.equal ({ code: 1, exit: true, port: -1 });
     });
   });
 
   describe ('port out of range (positive)', function () {
     it ('should fail', function () {
       const cmd = processCommand (['-p=200000']);
-      assert.deepStrictEqual (cmd, { code: 1, exit: true, port: 200000 });
+      expect (cmd).to.deep.equal ({ code: 1, exit: true, port: 200000 });
     });
   });
 
   describe ('port not an integer', function () {
     it ('should fail', function () {
       const cmd = processCommand (['-p=2000.5']);
-      assert.deepStrictEqual (cmd, { code: 1, exit: true, port: 2000.5 });
+      expect (cmd).to.deep.equal ({ code: 1, exit: true, port: 2000.5 });
     });
   });
 
   describe ('port not a number', function () {
     it ('should fail', function () {
       const cmd = processCommand (['-p=ABC']);
-      assert.deepStrictEqual (cmd.code, 1);
-      assert.deepStrictEqual (cmd.exit, true);
-      assert (Number.isNaN (cmd.port));
+      expect (cmd.code).to.equal (1);
+      expect (cmd.exit).to.be.true;
+      expect (Number.isNaN (cmd.port)).to.be.true;
     });
   });
 
   describe ('unary help command', function () {
     it ('should succeed', function () {
       let cmd = processCommand (['-h']);
-      assert.deepStrictEqual (cmd, { code: 0, exit: true, port: 0 });
+      expect (cmd).to.deep.equal ({ code: 0, exit: true, port: 0 });
       cmd = processCommand (['--help']);
-      assert.deepStrictEqual (cmd, { code: 0, exit: true, port: 0 });
+      expect (cmd).to.deep.equal ({ code: 0, exit: true, port: 0 });
     });
   });
 
   describe ('help in command', function () {
     it ('should succeed', function () {
       let cmd = processCommand (['-p=2000', '-h']);
-      assert.deepStrictEqual (cmd, { code: 0, exit: true, port: 2000 });
+      expect (cmd).to.deep.equal ({ code: 0, exit: true, port: 2000 });
       cmd = processCommand (['-p=2000', '--help']);
-      assert.deepStrictEqual (cmd, { code: 0, exit: true, port: 2000 });
+      expect (cmd).to.deep.equal ({ code: 0, exit: true, port: 2000 });
     });
   });
 });
