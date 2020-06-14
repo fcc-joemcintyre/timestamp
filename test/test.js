@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 import { processCommand } from '../lib/cmd.js';
 import { start, stop } from '../lib/server.js';
 
-const expect = chai.expect;
+const { expect } = chai;
 
 before (async function () {
   await start (3000);
