@@ -1,6 +1,6 @@
 /**
  * Generate home page HTML
- * @returns {string} HTML content
+ * @returns HTML string
  */
 export function homepage () {
   return (

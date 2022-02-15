@@ -1,24 +1,22 @@
-/**
-  @typedef {import ('express').Request} Request
-  @typedef {import ('express').Response} Response
- */
+import { Request, Response } from 'express';
+
+export type Result = {
+  natural: string | null,
+  unix: number | null,
+};
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];
 
 /**
  * Return the timestamp object for a request.
- * @param {Request} req HTTP request
- * @param {Response} res HTTP response
- * @returns {void}
+ * @param req HTTP request
+ * @param res HTTP response
  */
-export function timestamp (req, res) {
-  const result = {
-    /** @type {string?} */ natural: null,
-    /** @type {number?} */ unix: null,
-  };
+export function timestamp (req: Request, res: Response) {
+  const result: Result = { natural: null, unix: null };
   const inputDate = req.query.date;
-  if (inputDate) {
+  if (typeof inputDate === 'string') {
     if (Number.isNaN (Number (inputDate))) {
       // handle text version of date
       const date = new Date (inputDate);

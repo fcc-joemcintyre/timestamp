@@ -1,17 +1,16 @@
-/**
-  @typedef {object} CommandResult
-  @property {number} code Error code (0 if no error)
-  @property {boolean} exit Flag, exit or not
-  @property {number} port Port number
- */
+export type CommandResult = {
+  code: number,
+  exit: boolean,
+  port: number,
+}
 
 /**
  * Valid command options
  *  [-p / --port] port to listen on
- * @param {string[]} args Array of arguments
- * @returns {CommandResult} Command parsing result
+ * @param args Array of arguments
+ * @returns Command parsing result
  */
-export function processCommand (args) {
+export function processCommand (args: string[]): CommandResult {
   let showHelp = false;
   const errors = [];
   const result = {
