@@ -9,7 +9,7 @@ let server: http.Server;
  * Start the Timestamp server.
  * @param port HTTP port to listen to
  */
-export function start (port: number) {
+export async function start (port: number) {
   console.log ('Starting Timestamp server');
 
   // initialize and start server
@@ -20,9 +20,8 @@ export function start (port: number) {
   app.get ('*', (req, res) => res.status (200).send (html));
 
   server = http.createServer (app);
-  server.listen (port, () => {
-    console.log (`Timestamp server listening on port ${port}`);
-  });
+  await listenAsync (server, port);
+  console.log (`Timestamp server listening on port ${port}`);
 }
 
 /**
@@ -32,4 +31,16 @@ export async function stop () {
   if (server) {
     await server.close ();
   }
+}
+
+/**
+ * Async / await support for http.Server.listen
+ * @param s http.Server instance
+ * @param port port number
+ * @returns Promise to await server.listen on
+ */
+function listenAsync (s: http.Server, port: number) {
+  return new Promise ((resolve) => {
+    s.listen (port, () => { resolve (true); });
+  });
 }

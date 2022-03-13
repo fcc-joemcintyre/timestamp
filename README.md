@@ -30,7 +30,7 @@ Build
 npm build
 ```
 
-Run unit tests
+Run unit and integration tests
 
 ```
 npm test

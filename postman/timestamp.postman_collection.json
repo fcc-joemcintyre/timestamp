@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "cd33c7e2-22c2-40a2-9b5e-c0340a98600f",
+		"name": "timestamp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Home page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test ('status to be 200', () => {",
+							"    pm.response.to.have.status (200);",
+							"})",
+							"",
+							"pm.test ('HTML content to be home page', () => {",
+							"    var text = '<h1>Timestamp Service</h1>';",
+							"    var data = pm.response.text ();",
+							"    pm.expect (data.startsWith (text)).to.eq (true);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"type": "file",
+							"src": "/Users/joe/dev/fcc/filemetadata/postman/testfile-1.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "invalid page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test ('status to be 200', () => {",
+							"    pm.response.to.have.status (200);",
+							"})",
+							"",
+							"pm.test ('HTML content to be home page', () => {",
+							"    var text = '<h1>Timestamp Service</h1>';",
+							"    var data = pm.response.text ();",
+							"    pm.expect (data.startsWith (text)).to.eq (true);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"type": "file",
+							"src": "/Users/joe/dev/fcc/filemetadata/postman/testfile-1.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/notapage",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notapage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "invalid api URI",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test ('status to be 200', () => {",
+							"    pm.response.to.have.status (200);",
+							"})",
+							"",
+							"pm.test ('HTML content to be home page', () => {",
+							"    var text = '<h1>Timestamp Service</h1>';",
+							"    var data = pm.response.text ();",
+							"    pm.expect (data.startsWith (text)).to.eq (true);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"type": "file",
+							"src": "/Users/joe/dev/fcc/filemetadata/postman/testfile-1.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/not",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"not"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Timestamp from natural date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test ('status to be 200', () => {",
+							"    pm.response.to.have.status (200);",
+							"})",
+							"",
+							"pm.test ('size to be 32', () => {",
+							"    var data = pm.response.json ();",
+							"    pm.expect (data.natural).to.eq ('January 11, 2011');",
+							"    pm.expect (data.unix).to.eq (1294704000000);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/date?date=January 11, 2011",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"date"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "January 11, 2011"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Timestamp from unix milliseconds",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test ('status to be 200', () => {",
+							"    pm.response.to.have.status (200);",
+							"})",
+							"",
+							"pm.test ('size to be 32', () => {",
+							"    var data = pm.response.json ();",
+							"    pm.expect (data.natural).to.eq ('January 11, 2011');",
+							"    pm.expect (data.unix).to.eq (1294704000000);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/date?date=1294704000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"date"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "1294704000000"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
