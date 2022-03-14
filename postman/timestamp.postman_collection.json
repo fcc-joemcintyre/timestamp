@@ -35,13 +35,7 @@
 				"header": [],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "",
-							"type": "file",
-							"src": "/Users/joe/dev/fcc/filemetadata/postman/testfile-1.txt"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
 					"raw": "http://localhost:3000/",
@@ -87,13 +81,7 @@
 				"header": [],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "",
-							"type": "file",
-							"src": "/Users/joe/dev/fcc/filemetadata/postman/testfile-1.txt"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
 					"raw": "http://localhost:3000/notapage",
@@ -139,13 +127,7 @@
 				"header": [],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "",
-							"type": "file",
-							"src": "/Users/joe/dev/fcc/filemetadata/postman/testfile-1.txt"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
 					"raw": "http://localhost:3000/api/not",
@@ -173,7 +155,7 @@
 							"    pm.response.to.have.status (200);",
 							"})",
 							"",
-							"pm.test ('size to be 32', () => {",
+							"pm.test ('response with unix content', () => {",
 							"    var data = pm.response.json ();",
 							"    pm.expect (data.natural).to.eq ('January 11, 2011');",
 							"    pm.expect (data.unix).to.eq (1294704000000);",
@@ -226,7 +208,7 @@
 							"    pm.response.to.have.status (200);",
 							"})",
 							"",
-							"pm.test ('size to be 32', () => {",
+							"pm.test ('response with natural date content', () => {",
 							"    var data = pm.response.json ();",
 							"    pm.expect (data.natural).to.eq ('January 11, 2011');",
 							"    pm.expect (data.unix).to.eq (1294704000000);",
