@@ -249,6 +249,59 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Timestamp from invalid date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test ('status to be 200', () => {",
+							"    pm.response.to.have.status (200);",
+							"})",
+							"",
+							"pm.test ('response with unix content', () => {",
+							"    var data = pm.response.json ();",
+							"    pm.expect (data.natural).to.eq (null);",
+							"    pm.expect (data.unix).to.eq (null);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/date?date=J 11, 2011",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"date"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "J 11, 2011"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
