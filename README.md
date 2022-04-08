@@ -30,6 +30,12 @@ Build
 npm build
 ```
 
+Typecheck
+
+```
+npm run typecheck
+```
+
 Run unit and integration tests
 
 ```

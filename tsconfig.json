@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "outDir": "./lib",
-    "declaration": true
+    "skipLibCheck": true
   },
   "include": [
     "./src"
