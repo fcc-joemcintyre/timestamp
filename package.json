@@ -19,7 +19,7 @@
     "postman:server": "cd postman && node --loader ts-node/esm test-api.ts --server",
     "start": "nodemon lib/main.js --port=3000",
     "lint": "eslint --ext .js,.ts,.tsx --no-error-on-unmatched-pattern .",
-    "typecheck": "tsc --noemit"
+    "typecheck": "tsc"
   },
   "devDependencies": {
     "@cygns/eslint-config-node": "6.0.0",
