@@ -12,9 +12,13 @@ The API format is
 where [hostname] is the host name of the server hosting the service and
 [date] is the input date or Unix timestamp.
 
-An instance of the service is available at https://timestamp-jm.herukoapp.com
+An instance of the service is available at https://timestamp-jm.onrender.com
 
-The result is a JSON message with the format
+For example, the following URL,
+
+    https://timestamp-jm.onrender.com/api/date?date=1263081600000
+
+will have a result JSON message with the content
 
     { "natural":"January 10, 2010", "unix": 1263081600000 }
 
