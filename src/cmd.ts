@@ -16,7 +16,7 @@ export function processCommand (args: string[]): CommandResult {
   const result = {
     code: 0,
     exit: false,
-    port: 0,
+    port: 3000,
   };
 
   for (const arg of args) {
