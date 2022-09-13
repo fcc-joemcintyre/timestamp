@@ -28,10 +28,34 @@ If an invalid input is provided, null will be returned for both values.
 
 The following scripts are defined in this package
 
+*Development Build and Run (use in separate terminals)*
+
+```
+npm run dev:build
+```
+
+```
+npm run dev:start
+```
+
+*Production Build and Run*
+
 Build
 
 ```
-npm build
+npm run build
+```
+
+```
+npm run start
+```
+
+*Other commands*
+
+Run ESLint against lib and test directories
+
+```
+npm run lint
 ```
 
 Typecheck
@@ -44,18 +68,6 @@ Run unit and integration tests
 
 ```
 npm test
-```
-
-Start local server instance
-
-```
-npm start
-```
-
-Run ESLint against lib and test directories
-
-```
-npm run lint
 ```
 
 ## License
