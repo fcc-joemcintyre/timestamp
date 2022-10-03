@@ -5,21 +5,21 @@ describe ('cmd', function () {
   describe ('empty command', function () {
     it ('should not fail', function () {
       const cmd = processCommand ([]);
-      expect (cmd).toEqual ({ code: 0, exit: false, port: 0 });
+      expect (cmd).toEqual ({ code: 0, exit: false, port: 3000 });
     });
   });
 
   describe ('invalid standalone option', function () {
     it ('should fail with code 1', function () {
       const cmd = processCommand (['-j']);
-      expect (cmd).toEqual ({ code: 1, exit: true, port: 0 });
+      expect (cmd).toEqual ({ code: 1, exit: true, port: 3000 });
     });
   });
 
   describe ('invalid settings option', function () {
     it ('should fail with code 1', function () {
       const cmd = processCommand (['-j=foo.js']);
-      expect (cmd).toEqual ({ code: 1, exit: true, port: 0 });
+      expect (cmd).toEqual ({ code: 1, exit: true, port: 3000 });
     });
   });
 
@@ -63,9 +63,9 @@ describe ('cmd', function () {
   describe ('unary help command', function () {
     it ('should succeed', function () {
       let cmd = processCommand (['-h']);
-      expect (cmd).toEqual ({ code: 0, exit: true, port: 0 });
+      expect (cmd).toEqual ({ code: 0, exit: true, port: 3000 });
       cmd = processCommand (['--help']);
-      expect (cmd).toEqual ({ code: 0, exit: true, port: 0 });
+      expect (cmd).toEqual ({ code: 0, exit: true, port: 3000 });
     });
   });
 
